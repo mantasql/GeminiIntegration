@@ -6,12 +6,6 @@ namespace GeminiTests;
 
 public class InvoiceDigitalizerTests
 {
-    private readonly ITestOutputHelper _output;
-    public InvoiceDigitalizerTests(ITestOutputHelper output)
-    {
-        _output = output;
-    }
-
     [Theory]
     [InlineData(@"..\..\..\..\SF1.png", 0)]
     [InlineData(@"..\..\..\..\SF2.png", 1)]
