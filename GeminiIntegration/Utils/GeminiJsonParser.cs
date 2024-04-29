@@ -1,10 +1,22 @@
 ﻿using GeminiIntegration.Exceptions;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace GeminiIntegration.Utils;
 
 public class GeminiJsonParser
 {
+    private JsonSerializerOptions options;
+
+    public GeminiJsonParser()
+    {
+        options = new JsonSerializerOptions
+        {
+            NumberHandling = JsonNumberHandling.AllowReadingFromString |
+            JsonNumberHandling.WriteAsString
+        };
+    }
+
     public T ParseJsonResponse<T>(string json)
     {
         json = json.Trim();
@@ -18,7 +30,7 @@ public class GeminiJsonParser
 
         string jsonData = json[startIndex..(endIndex + 1)];
 
-        T? data = JsonConvert.DeserializeObject<T>(jsonData);
+        T? data = JsonSerializer.Deserialize<T>(jsonData, options);
 
         if (data is null)
         {

@@ -7,7 +7,9 @@ namespace GeminiIntegration;
 
 public class Gemini
 {
-    private const string ProjectId = "gemini-accounting";
+    private const string ProjectId = "{YOUR_PROJECT_ID}";
+    private const string CredentialsPath = @"{PATH_TO_YOUR_SERVICE_ACCOUNT_KEY}";
+
     private const string Location = "europe-west1";
     private const string ModelId = "gemini-pro-vision";
     private const string Publisher = "google";
@@ -49,6 +51,7 @@ public class Gemini
     {
         var predictionServiceClient = new PredictionServiceClientBuilder
         {
+            CredentialsPath = CredentialsPath,
             Endpoint = EndpointUrl,
         }.Build();
 
@@ -65,8 +68,12 @@ public class Gemini
 
         await foreach (GenerateContentResponse responseItem in responseStream)
         {
-            if (responseItem.Candidates[0].Content != null)
-            fullText.Append(responseItem.Candidates[0].Content.Parts[0].Text);
+            string? responseText = responseItem?.Candidates?[0]?.Content?.Parts?[0]?.Text;
+
+            if (responseText != null)
+            {
+                fullText.Append(responseText);
+            }
         }
 
         return fullText.ToString();

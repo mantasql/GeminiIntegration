@@ -2,13 +2,13 @@
 
 public class InvoiceData
 {
-    public string InvoiceNumber { get; set; }
+    public string InvoiceNumber { get; set; } = null!;
 
     public DateTime InvoiceDate { get; set; }
 
-    public string Buyer { get; set; }
+    public string Buyer { get; set; } = null!;
 
-    public string Seller { get; set; }
+    public string Seller { get; set; } = null!;
 
     public decimal Subtotal { get; set; }
 

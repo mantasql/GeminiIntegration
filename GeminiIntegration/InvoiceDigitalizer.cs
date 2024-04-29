@@ -1,7 +1,5 @@
-﻿using GeminiIntegration.Exceptions;
-using GeminiIntegration.Models;
+﻿using GeminiIntegration.Models;
 using GeminiIntegration.Utils;
-using Newtonsoft.Json;
 
 namespace GeminiIntegration;
 

@@ -1,6 +1,5 @@
 ﻿using GeminiIntegration;
 using GeminiIntegration.Models;
-using Xunit.Abstractions;
 
 namespace GeminiTests;
 

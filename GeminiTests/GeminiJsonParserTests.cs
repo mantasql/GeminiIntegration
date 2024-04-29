@@ -1,7 +1,5 @@
-﻿using GeminiIntegration.Exceptions;
-using GeminiIntegration.Utils;
-using Google.Cloud.AIPlatform.V1;
-using Newtonsoft.Json;
+﻿using GeminiIntegration.Utils;
+using System.Text.Json;
 
 namespace GeminiTests;
 
@@ -31,7 +29,7 @@ public class GeminiJsonParserTests
 
         GeminiJsonParser parser = new GeminiJsonParser();
 
-        Assert.Throws<JsonParseException>(() => parser.ParseJsonResponse<Person>(json));
+        Assert.Throws<JsonException>(() => parser.ParseJsonResponse<Person>(json));
     }
 
     [Fact]
@@ -63,11 +61,11 @@ public class GeminiJsonParserTests
 
     private class Person
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
-        public string Surname { get; set; }
+        public string Surname { get; set; } = null!;
 
-        public float Age { get; set; }
+        public int Age { get; set; }
 
         public DateTime DateOfBirth { get; set; }
     }
