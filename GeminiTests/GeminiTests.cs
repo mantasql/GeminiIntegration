@@ -18,7 +18,7 @@ public class GeminiTests
     {
         // arrange
         string prompt = "Hello";
-        Gemini gemini = new Gemini();
+        Gemini gemini = new();
 
         // act
         string actual = await gemini.GenerateContentAsync(prompt);
@@ -35,7 +35,7 @@ public class GeminiTests
         string filePath = @"..\..\..\..\SF1.png";
         string prompt = "What do you see in the image?";
         byte[] image = File.ReadAllBytes(filePath);
-        Gemini gemini = new Gemini();
+        Gemini gemini = new();
 
         // act
         string actual = await gemini.GenerateContentAsync(prompt, image);
@@ -49,7 +49,7 @@ public class GeminiTests
     public async Task GenerateContentAsync_NullPrompt_ThrowsArgumentException()
     {
         string prompt = null!;
-        Gemini gemini = new Gemini();
+        Gemini gemini = new();
 
         await Assert.ThrowsAsync<ArgumentException>(() => gemini.GenerateContentAsync(prompt));
     }
@@ -58,7 +58,7 @@ public class GeminiTests
     public async Task GenerateContentAsync_EmptyPrompt_ThrowsArgumentException()
     {
         string prompt = string.Empty;
-        Gemini gemini = new Gemini();
+        Gemini gemini = new();
 
         await Assert.ThrowsAsync<ArgumentException>(() => gemini.GenerateContentAsync(prompt));
     }
@@ -69,7 +69,7 @@ public class GeminiTests
         string prompt = "What do you see in the image?";
         byte[] image = new byte[] { 0 };
 
-        Gemini gemini = new Gemini();
+        Gemini gemini = new();
 
         await Assert.ThrowsAsync<RpcException>(() => gemini.GenerateContentAsync(prompt, image));
     }

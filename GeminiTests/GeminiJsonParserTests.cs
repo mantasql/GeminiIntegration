@@ -10,9 +10,9 @@ public class GeminiJsonParserTests
     {
         // arrange
         string json = "{ \"Name\" : \"John\", \"Surname\" : \"Doe\", \"Age\" : \"24\", \"DateOfBirth\" : \"2000-06-21\" }";
-        Person expected = new Person() { Name = "John", Surname = "Doe", Age = 24, DateOfBirth = new DateTime(2000, 6, 21) };
+        Person expected = new() { Name = "John", Surname = "Doe", Age = 24, DateOfBirth = new DateTime(2000, 6, 21) };
 
-        GeminiJsonParser parser = new GeminiJsonParser();
+        GeminiJsonParser parser = new();
 
         // act
         Person actual = parser.ParseJsonResponse<Person>(json);
@@ -25,9 +25,9 @@ public class GeminiJsonParserTests
     public void ParseJsonResponse_InvalidJsonFormat_ThrowsJsonParseException()
     {
         string json = "{ \"Name\" : \"John\", \"Surname\" : \"Doe\", \"Age\" : \"24\", \"DateOfBirth\" : \"2000-06-21\".";
-        Person expected = new Person() { Name = "John", Surname = "Doe", Age = 24, DateOfBirth = new DateTime(2000, 6, 21) };
+        Person expected = new() { Name = "John", Surname = "Doe", Age = 24, DateOfBirth = new DateTime(2000, 6, 21) };
 
-        GeminiJsonParser parser = new GeminiJsonParser();
+        GeminiJsonParser parser = new();
 
         Assert.Throws<JsonException>(() => parser.ParseJsonResponse<Person>(json));
     }
@@ -36,9 +36,9 @@ public class GeminiJsonParserTests
     public void ParseJsonResponse_EmptyJson_ThrowsJsonException()
     {
         string json = string.Empty;
-        Person expected = new Person() { Name = "John", Surname = "Doe", Age = 24, DateOfBirth = new DateTime(2000, 6, 21) };
+        Person expected = new() { Name = "John", Surname = "Doe", Age = 24, DateOfBirth = new DateTime(2000, 6, 21) };
 
-        GeminiJsonParser parser = new GeminiJsonParser();
+        GeminiJsonParser parser = new();
 
         Assert.Throws<JsonException>(() => parser.ParseJsonResponse<Person>(json));
     }
@@ -48,9 +48,9 @@ public class GeminiJsonParserTests
     {
         // arrange
         string json = "```json{ \"Name\" : \"John\", \"Surname\" : \"Doe\", \"Age\" : \"24\", \"DateOfBirth\" : \"2000-06-21\" }```";
-        Person expected = new Person() { Name = "John", Surname = "Doe", Age = 24, DateOfBirth = new DateTime(2000, 6, 21) };
+        Person expected = new() { Name = "John", Surname = "Doe", Age = 24, DateOfBirth = new DateTime(2000, 6, 21) };
 
-        GeminiJsonParser parser = new GeminiJsonParser();
+        GeminiJsonParser parser = new();
 
         // act
         Person actual = parser.ParseJsonResponse<Person>(json);

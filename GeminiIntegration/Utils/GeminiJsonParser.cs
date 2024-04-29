@@ -6,7 +6,7 @@ namespace GeminiIntegration.Utils;
 
 public class GeminiJsonParser
 {
-    private JsonSerializerOptions options;
+    private readonly JsonSerializerOptions options;
 
     public GeminiJsonParser()
     {
@@ -32,11 +32,6 @@ public class GeminiJsonParser
 
         T? data = JsonSerializer.Deserialize<T>(jsonData, options);
 
-        if (data is null)
-        {
-            throw new JsonParseException($"Cound not parse JSON");
-        }
-
-        return data;
+        return data is null ? throw new JsonParseException($"Cound not parse JSON") : data;
     }
 }

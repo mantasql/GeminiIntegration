@@ -64,7 +64,7 @@ public class Gemini
 
     private async Task<string> GetResponseText(AsyncResponseStream<GenerateContentResponse> responseStream)
     {
-        StringBuilder fullText = new StringBuilder();
+        StringBuilder fullText = new();
 
         await foreach (GenerateContentResponse responseItem in responseStream)
         {

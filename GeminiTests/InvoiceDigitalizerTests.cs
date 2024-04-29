@@ -13,7 +13,7 @@ public class InvoiceDigitalizerTests
     {
         // arrange
         InvoiceData expected = GetInvoiceData()[index];
-        InvoiceDigitalizer digitalizer = new InvoiceDigitalizer();
+        InvoiceDigitalizer digitalizer = new();
 
         // act
         InvoiceData actual = await digitalizer.GetDigitalizedDataAsync(filePath);
@@ -35,7 +35,7 @@ public class InvoiceDigitalizerTests
     public async Task GetDigitalizedDataAsync_InvalidFilePath_ThrowsFileNotFoundException()
     {
         string filePath = "InvalidFileName";
-        InvoiceDigitalizer digitalizer = new InvoiceDigitalizer();
+        InvoiceDigitalizer digitalizer = new();
 
         await Assert.ThrowsAsync<FileNotFoundException>(() => digitalizer.GetDigitalizedDataAsync(filePath));
     }
@@ -44,16 +44,16 @@ public class InvoiceDigitalizerTests
     public async Task GetDigitalizedDataAsync_EmptyFilePath_ThrowsArgumentException()
     {
         string filePath = string.Empty;
-        InvoiceDigitalizer digitalizer = new InvoiceDigitalizer();
+        InvoiceDigitalizer digitalizer = new();
 
         await Assert.ThrowsAsync<ArgumentException>(() => digitalizer.GetDigitalizedDataAsync(filePath));
     }
 
-    private List<InvoiceData> GetInvoiceData()
+    private static List<InvoiceData> GetInvoiceData()
     {
         return new List<InvoiceData>
         {
-            new InvoiceData()
+            new()
             {
                 InvoiceNumber = "2066861",
                 InvoiceDate = new DateTime(2023, 4, 3),
@@ -63,7 +63,7 @@ public class InvoiceDigitalizerTests
                 VAT = 2.73M,
                 Total = 15.71M,
             },
-            new InvoiceData()
+            new()
             {
                 InvoiceNumber = "MS088246",
                 InvoiceDate = new DateTime(2023, 11, 23),
@@ -73,7 +73,7 @@ public class InvoiceDigitalizerTests
                 VAT = 204.02M,
                 Total = 1175.55M,
             },
-            new InvoiceData()
+            new()
             {
                 InvoiceNumber = "13682279",
                 InvoiceDate = new DateTime(2023, 6, 30),

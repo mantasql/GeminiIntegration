@@ -11,7 +11,7 @@ public class InvoiceDigitalizer : IDigitalizable<InvoiceData>
     {
         byte[] image = File.ReadAllBytes(filePath);
 
-        Gemini gemini = new Gemini();
+        Gemini gemini = new();
         InvoiceData data = new GeminiJsonParser().ParseJsonResponse<InvoiceData>(await gemini.GenerateContentAsync(Prompt, image));
 
         return data;
